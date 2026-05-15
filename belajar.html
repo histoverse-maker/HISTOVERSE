@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sejarah Kebudayaan Islam Kelas X – HISTOVERSE</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Tambahan CSS khusus untuk belajar.html */
+        .lms-container {
+            min-height: 100vh;
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .sidebar {
+            width: 300px;
+            background: var(--bg-secondary);
+            padding: 2rem;
+            overflow-y: auto;
+            border-right: 1px solid var(--border);
+            position: sticky;
+            top: 80px;
+            height: calc(100vh - 80px);
+        }
+        
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1000px;
+        }
+        
+        .bab-item {
+            margin-bottom: 1rem;
+            cursor: pointer;
+            padding: 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .bab-item:hover,
+        .bab-item.active {
+            background: var(--white);
+            box-shadow: 0 5px 15px var(--shadow);
+            color: var(--primary);
+        }
+        
+        .subbab-item {
+            margin-left: 1.5rem;
+            padding: 0.7rem;
+            font-size: 0.95rem;
+        }
+        
+        .content-area {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px var(--shadow);
+            min-height: 60vh;
+        }
+        
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .media-card {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .lms-container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+                order: 2;
+            }
+            .main-content {
+                order: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header sederhana -->
+    <header style="background: var(--primary); color: white; padding: 1rem 0; text-align: center;">
+        <div class="container">
+            <h1 style="margin: 0; font-size: 1.8rem;">Sejarah Kebudayaan Islam Kelas X</h1>
+            <p style="margin: 0.5rem 0 0;">Perkembangan Islam – HISTOVERSE</p>
+        </div>
+    </header>
+
+    <div class="lms-container">
+        <!-- SIDEBAR - Daftar Bab -->
+        <nav class="sidebar" id="sidebar">
+            <h3 style="color: var(--primary); margin-bottom: 1.5rem;">Daftar Materi</h3>
+            
+            <!-- BAB 1 -->
+            <div class="bab-item active" data-bab="bab1">
+                <strong>Bab 1: Perkembangan Islam Masa Rasulullah SAW Periode Makkah</strong>
+                <div class="subbab-item" data-target="1.1">1.1 Kebudayaan Masyarakat Makkah Sebelum Islam</div>
+                <div class="subbab-item" data-target="1.2">1.2 Substansi dan Strategi Dakwah Periode Makkah</div>
+                <div class="subbab-item" data-target="1.3">1.3 Peristiwa Penting Dakwah Periode Makkah</div>
+            </div>
+
+            <!-- BAB 2 -->
+            <div class="bab-item" data-bab="bab2">
+                <strong>Bab 2: Perkembangan Islam Masa Rasulullah SAW Periode Madinah</strong>
+                <div class="subbab-item" data-target="2.1">2.1 Kebudayaan Masyarakat Madinah Sebelum Islam</div>
+                <div class="subbab-item" data-target="2.2">2.2 Substansi dan Strategi Dakwah Periode Madinah</div>
+                <div class="subbab-item" data-target="2.3">2.3 Peristiwa Penting Dakwah Periode Madinah</div>
+            </div>
+
+            <!-- BAB 3 -->
+            <div class="bab-item" data-bab="bab3">
+                <strong>Bab 3: Penaklukan Kota Makkah (Fathu Makkah)</strong>
+                <div class="subbab-item" data-target="3.1">3.1 Sebab-sebab Fathu Makkah</div>
+                <div class="subbab-item" data-target="3.2">3.2 Faktor Keberhasilan Fathu Makkah</div>
+                <div class="subbab-item" data-target="3.3">3.3 Haji Wada'</div>
+            </div>
+
+            <!-- BAB 4-6 disingkat untuk contoh -->
+            <div class="bab-item" data-bab="bab4">
+                <strong>Bab 4: Perkembangan Islam Masa Khulafaur Rasyidin</strong>
+            </div>
+            <div class="bab-item" data-bab="bab5">
+                <strong>Bab 5: Peradaban Islam Daulah Umayyah di Damaskus</strong>
+            </div>
+            <div class="bab-item" data-bab="bab6">
+                <strong>Bab 6: Peradaban Islam Daulah Umayyah di Andalusia</strong>
+            </div>
+        </nav>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <div class="content-area" id="content-area">
+                <!-- Konten akan dimuat oleh JavaScript -->
+                <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+                    <h2>Pilih materi dari sidebar</h2>
+                    <p>Klik bab atau subbab untuk memuat materi pembelajaran</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // ========================================
+        // NAVIGASI SIDEBAR LMS
+        // ========================================
+        const sidebarItems = document.querySelectorAll('.bab-item, .subbab-item');
+        const contentArea = document.getElementById('content-area');
+        
+        // Data konten untuk setiap bab (contoh lengkap untuk Bab 1)
+        const kontenData = {
+            '1.1': {
+                judul: 'Kebudayaan Masyarakat Makkah Sebelum Islam',
+                ringkasan: 'Membahas kondisi masyarakat Arab sebelum Islam (masa jahiliyah) yang ditandai dengan penyembahan berhala, kehidupan sosial yang bebas, serta budaya seperti berdagang, bersyair, dan menjunjung kehormatan suku.',
+                gambar: 'https://i.ibb.co.com/fdtX5T0n/unnamed-1.png',
+                video: 'https://youtu.be/td2zOWv4G-8',
+                ppt: 'https://www.canva.com/design/DAHJC4broKQ/AHDqhhDMCH-vSkQkn814YA/view'
+            },
+            '1.2': {
+                judul: 'Substansi dan Strategi Dakwah Rasulullah SAW Periode Makkah',
+                ringkasan: 'Strategi dakwah Rasulullah SAW di Makkah yang dilakukan secara sembunyi-sembunyi dan terang-terangan.',
+                gambar: 'https://i.ibb.co.com/Hf4Qf0YQ/unnamed-3.png',
+                video: 'https://youtu.be/1foEBD2nPR4',
+                ppt: 'https://www.canva.com/design/DAHJCxZ7IjM/3ni2ZSN5LabNAvFui-0Z1Q/view'
+            },
+            '1.3': {
+                judul: 'Peristiwa-peristiwa Penting Dakwah Periode Makkah',
+                ringkasan: 'Peristiwa seperti hijrah ke Habasyah dan penolakan kaum Quraisy terhadap dakwah Islam.',
+                gambar: 'https://i.ibb.co.com/xqLnjD4J/unnamed-2.png',
+                video: 'https://youtu.be/_UIzDbxM6Ko',
+                ppt: 'https://www.canva.com/design/DAHJCwlknzU/LivMEk_Gc56E50I3xXY8RA/view'
+            }
+            // Tambahkan data untuk bab lainnya sesuai kebutuhan
+        };
+        
+        sidebarItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const target = item.dataset.target || item.dataset.bab;
+                
+                // Update active state
+                document.querySelectorAll('.bab-item, .subbab-item').forEach(i => {
+                    i.classList.remove('active');
+                });
+                item.classList.add('active');
+                
+                // Load konten
+                if (kontenData[target]) {
+                    loadKonten(kontenData[target], target);
+                } else {
+                    loadKontenDefault(item.textContent.trim());
+                }
+            });
+        });
+        
+        function loadKonten(data, target) {
+            contentArea.innerHTML = `
+                <h2 style="color: var(--primary); margin-bottom: 1rem;">${data.judul}</h2>
+                <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem;">
+                    <p style="line-height: 1.7; color: var(--text-secondary);">${data.ringkasan}</p>
+                </div>
+                
+                <div class="media-grid">
+                    ${data.gambar ? `
+                    <div class="media-card">
+                        <h4>📸 Gambar Materi</h4>
+                        <img src="${data.gambar}" alt="${data.judul}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem;">
+                    </div>` : ''}
+                    
+                    ${data.video ? `
+                    <div class="media-card">
+                        <h4>▶️ Video Pembelajaran</h4>
+                        <div style="position: relative; padding-bottom: 56.25%; height: 0;">
+                            <iframe src="${data.video.replace('watch?v=', 'embed/')}" 
+                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 10px;" 
+                                    frameborder="0" allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>` : ''}
+                    
+                    ${data.ppt ? `
+                    <div class="media-card">
+                        <h4>📽️ Presentasi PPT</h4>
+                        <a href="${data.ppt}" target="_blank" class="btn btn-primary" style="width: 100%;">Buka Presentasi</a>
+                    </div>` : ''}
+                </div>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="#" class="btn btn-primary" onclick="alert('Fitur kuis & game akan dikembangkan'); return false;">
+                        ❓ Kerjakan Kuis
+                    </a>
+                    <a href="#" class="btn btn-secondary" style="margin-left: 1rem;" onclick="alert('Fitur game akan dikembangkan'); return false;">
+                        🎮 Main Game
+                    </a>
+                </div>
+            `;
+        }
+        
+        function loadKontenDefault(judul) {
+            contentArea.innerHTML = `
+                <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+                    <h2>${judul}</h2>
+                    <p>Isi materi untuk ${judul} akan ditambahkan oleh pengembang.</p>
+                    <p>Struktur sudah siap untuk menampilkan:</p>
+                    <ul style="text-align: left; display: inline-block;">
+                        <li>📖 Teks materi lengkap</li>
+                        <li>📸 Gambar pendukung</li>
+                        <li>▶️ Video animasi</li>
+                        <li>❓ Kuis interaktif</li>
+                        <li>🎮 Game pembelajaran</li>
+                        <li>📽️ Presentasi PPT</li>
+                    </ul>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
