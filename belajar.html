@@ -3,266 +3,815 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sejarah Kebudayaan Islam Kelas X – HISTOVERSE</title>
-    <link rel="stylesheet" href="style.css">
+    <title>LMS Mini - Sejarah Kebudayaan Islam Kelas X</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        espresso: {
+                            50: '#f8f6f5',
+                            100: '#f0ece9',
+                            200: '#e0d6cf',
+                            300: '#cab6a9',
+                            400: '#b09381',
+                            500: '#977561',
+                            600: '#835f4c',
+                            700: '#6e4d3d',
+                            800: '#5a3f33',
+                            900: '#4c352b',
+                            950: '#2C1E17', // Coklat Espresso Utama
+                        },
+                        krem: {
+                            DEFAULT: '#FAF6F0', // Krem Terang
+                            dark: '#EFEAE0'
+                        },
+                        emas: {
+                            DEFAULT: '#D4AF37', // Emas Terang
+                            hover: '#C59B27',
+                            light: '#FAF3D3'
+                        },
+                        ivory: '#FCFBF9', // Ivory Clean
+                        beige: '#F5EFEB', // Beige Hangat
+                        hitampekat: '#111111', // Hitam Pekat
+                        abukecoklatan: '#5C554F' // Abu Tua Kecoklatan
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* Tambahan CSS khusus untuk belajar.html */
-        .lms-container {
-            min-height: 100vh;
-            display: flex;
-            max-width: 1400px;
-            margin: 0 auto;
+        /* Custom scrollbar style matching the theme */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
         }
-        
-        .sidebar {
-            width: 300px;
-            background: var(--bg-secondary);
-            padding: 2rem;
-            overflow-y: auto;
-            border-right: 1px solid var(--border);
-            position: sticky;
-            top: 80px;
-            height: calc(100vh - 80px);
+        ::-webkit-scrollbar-track {
+            background: #FAF6F0;
         }
-        
-        .main-content {
-            flex: 1;
-            padding: 2rem;
-            max-width: 1000px;
+        ::-webkit-scrollbar-thumb {
+            background: #cab6a9;
+            border-radius: 4px;
         }
-        
-        .bab-item {
-            margin-bottom: 1rem;
-            cursor: pointer;
-            padding: 1rem;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-        
-        .bab-item:hover,
-        .bab-item.active {
-            background: var(--white);
-            box-shadow: 0 5px 15px var(--shadow);
-            color: var(--primary);
-        }
-        
-        .subbab-item {
-            margin-left: 1.5rem;
-            padding: 0.7rem;
-            font-size: 0.95rem;
-        }
-        
-        .content-area {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px var(--shadow);
-            min-height: 60vh;
-        }
-        
-        .media-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-        
-        .media-card {
-            background: var(--bg-secondary);
-            padding: 1.5rem;
-            border-radius: 10px;
-            text-align: center;
-        }
-        
-        @media (max-width: 768px) {
-            .lms-container {
-                flex-direction: column;
-            }
-            .sidebar {
-                width: 100%;
-                height: auto;
-                position: static;
-                order: 2;
-            }
-            .main-content {
-                order: 1;
-            }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b09381;
         }
     </style>
 </head>
-<body>
-    <!-- Header sederhana -->
-    <header style="background: var(--primary); color: white; padding: 1rem 0; text-align: center;">
-        <div class="container">
-            <h1 style="margin: 0; font-size: 1.8rem;">Sejarah Kebudayaan Islam Kelas X</h1>
-            <p style="margin: 0.5rem 0 0;">Perkembangan Islam – HISTOVERSE</p>
+<body class="bg-ivory text-hitampekat font-sans flex flex-col min-h-screen">
+
+    <!-- HEADER PEMBELAJARAN -->
+    <header class="bg-espresso-950 text-krem shadow-md sticky top-0 z-50 border-b border-emas transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <button id="sidebarToggle" class="p-2 rounded-lg hover:bg-espresso-900 focus:outline-none lg:hidden transition-colors" aria-label="Toggle Sidebar">
+                    <i data-lucide="menu" class="w-6 h-6 text-emas"></i>
+                </button>
+                <div class="flex items-center space-x-2">
+                    <span class="p-1.5 bg-espresso-900 rounded-lg border border-emas/30">
+                        <i data-lucide="book-open" class="w-6 h-6 text-emas"></i>
+                    </span>
+                    <div>
+                        <h1 class="text-sm sm:text-base font-bold tracking-tight line-clamp-1">Sejarah Kebudayaan Islam Kelas X</h1>
+                        <p class="text-xs text-emas/80 hidden sm:block">LMS Perkembangan Islam</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <a href="#" class="text-xs sm:text-sm bg-espresso-900 hover:bg-espresso-800 text-krem border border-emas/20 px-3 py-1.5 rounded-lg flex items-center space-x-1 transition-all duration-200">
+                    <i data-lucide="home" class="w-4 h-4 text-emas"></i>
+                    <span class="hidden md:inline">Landing Page</span>
+                </a>
+                <div class="h-6 w-px bg-espresso-800"></div>
+                <div class="flex items-center space-x-2">
+                    <span class="w-8 h-8 rounded-full bg-emas text-espresso-950 flex items-center justify-center font-bold text-sm">
+                        M
+                    </span>
+                    <span class="text-xs font-semibold text-krem hidden md:inline">Mahasiswa</span>
+                </div>
+            </div>
         </div>
     </header>
 
-    <div class="lms-container">
-        <!-- SIDEBAR - Daftar Bab -->
-        <nav class="sidebar" id="sidebar">
-            <h3 style="color: var(--primary); margin-bottom: 1.5rem;">Daftar Materi</h3>
-            
-            <!-- BAB 1 -->
-            <div class="bab-item active" data-bab="bab1">
-                <strong>Bab 1: Perkembangan Islam Masa Rasulullah SAW Periode Makkah</strong>
-                <div class="subbab-item" data-target="1.1">1.1 Kebudayaan Masyarakat Makkah Sebelum Islam</div>
-                <div class="subbab-item" data-target="1.2">1.2 Substansi dan Strategi Dakwah Periode Makkah</div>
-                <div class="subbab-item" data-target="1.3">1.3 Peristiwa Penting Dakwah Periode Makkah</div>
+    <!-- CONTENT WRAPPER -->
+    <div class="flex-1 flex flex-col lg:flex-row relative">
+        
+        <!-- SIDEBAR / MENU DAFTAR BAB -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-80 bg-krem border-r border-espresso-100 flex flex-col transform -translate-x-full lg:translate-x-0 lg:static lg:h-[calc(100vh-4rem)] transition-transform duration-300 ease-in-out">
+            <!-- Sidebar Header for Mobile -->
+            <div class="p-4 border-b border-espresso-100 flex items-center justify-between lg:hidden bg-beige">
+                <span class="font-bold text-espresso-950 flex items-center gap-2">
+                    <i data-lucide="compass" class="w-5 h-5 text-emas"></i>
+                    Daftar Materi
+                </span>
+                <button id="sidebarClose" class="p-2 rounded-lg hover:bg-espresso-100 text-espresso-950">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
             </div>
 
-            <!-- BAB 2 -->
-            <div class="bab-item" data-bab="bab2">
-                <strong>Bab 2: Perkembangan Islam Masa Rasulullah SAW Periode Madinah</strong>
-                <div class="subbab-item" data-target="2.1">2.1 Kebudayaan Masyarakat Madinah Sebelum Islam</div>
-                <div class="subbab-item" data-target="2.2">2.2 Substansi dan Strategi Dakwah Periode Madinah</div>
-                <div class="subbab-item" data-target="2.3">2.3 Peristiwa Penting Dakwah Periode Madinah</div>
-            </div>
-
-            <!-- BAB 3 -->
-            <div class="bab-item" data-bab="bab3">
-                <strong>Bab 3: Penaklukan Kota Makkah (Fathu Makkah)</strong>
-                <div class="subbab-item" data-target="3.1">3.1 Sebab-sebab Fathu Makkah</div>
-                <div class="subbab-item" data-target="3.2">3.2 Faktor Keberhasilan Fathu Makkah</div>
-                <div class="subbab-item" data-target="3.3">3.3 Haji Wada'</div>
-            </div>
-
-            <!-- BAB 4-6 disingkat untuk contoh -->
-            <div class="bab-item" data-bab="bab4">
-                <strong>Bab 4: Perkembangan Islam Masa Khulafaur Rasyidin</strong>
-            </div>
-            <div class="bab-item" data-bab="bab5">
-                <strong>Bab 5: Peradaban Islam Daulah Umayyah di Damaskus</strong>
-            </div>
-            <div class="bab-item" data-bab="bab6">
-                <strong>Bab 6: Peradaban Islam Daulah Umayyah di Andalusia</strong>
-            </div>
-        </nav>
-
-        <!-- MAIN CONTENT -->
-        <main class="main-content">
-            <div class="content-area" id="content-area">
-                <!-- Konten akan dimuat oleh JavaScript -->
-                <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
-                    <h2>Pilih materi dari sidebar</h2>
-                    <p>Klik bab atau subbab untuk memuat materi pembelajaran</p>
+            <!-- Search bar inside sidebar -->
+            <div class="p-4 border-b border-espresso-100">
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-abukecoklatan">
+                        <i data-lucide="search" class="w-4 h-4"></i>
+                    </span>
+                    <input type="text" id="searchChapter" placeholder="Cari bab atau materi..." class="w-full pl-9 pr-4 py-2 border border-espresso-200 bg-ivory rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emas focus:border-emas transition-all text-hitampekat">
                 </div>
             </div>
-        </main>
-    </div>
 
-    <script>
-        // ========================================
-        // NAVIGASI SIDEBAR LMS
-        // ========================================
-        const sidebarItems = document.querySelectorAll('.bab-item, .subbab-item');
-        const contentArea = document.getElementById('content-area');
-        
-        // Data konten untuk setiap bab (contoh lengkap untuk Bab 1)
-        const kontenData = {
-            '1.1': {
-                judul: 'Kebudayaan Masyarakat Makkah Sebelum Islam',
-                ringkasan: 'Membahas kondisi masyarakat Arab sebelum Islam (masa jahiliyah) yang ditandai dengan penyembahan berhala, kehidupan sosial yang bebas, serta budaya seperti berdagang, bersyair, dan menjunjung kehormatan suku.',
-                gambar: 'https://i.ibb.co.com/fdtX5T0n/unnamed-1.png',
-                video: 'https://youtu.be/td2zOWv4G-8',
-                ppt: 'https://www.canva.com/design/DAHJC4broKQ/AHDqhhDMCH-vSkQkn814YA/view'
-            },
-            '1.2': {
-                judul: 'Substansi dan Strategi Dakwah Rasulullah SAW Periode Makkah',
-                ringkasan: 'Strategi dakwah Rasulullah SAW di Makkah yang dilakukan secara sembunyi-sembunyi dan terang-terangan.',
-                gambar: 'https://i.ibb.co.com/Hf4Qf0YQ/unnamed-3.png',
-                video: 'https://youtu.be/1foEBD2nPR4',
-                ppt: 'https://www.canva.com/design/DAHJCxZ7IjM/3ni2ZSN5LabNAvFui-0Z1Q/view'
-            },
-            '1.3': {
-                judul: 'Peristiwa-peristiwa Penting Dakwah Periode Makkah',
-                ringkasan: 'Peristiwa seperti hijrah ke Habasyah dan penolakan kaum Quraisy terhadap dakwah Islam.',
-                gambar: 'https://i.ibb.co.com/xqLnjD4J/unnamed-2.png',
-                video: 'https://youtu.be/_UIzDbxM6Ko',
-                ppt: 'https://www.canva.com/design/DAHJCwlknzU/LivMEk_Gc56E50I3xXY8RA/view'
-            }
-            // Tambahkan data untuk bab lainnya sesuai kebutuhan
-        };
-        
-        sidebarItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const target = item.dataset.target || item.dataset.bab;
-                
-                // Update active state
-                document.querySelectorAll('.bab-item, .subbab-item').forEach(i => {
-                    i.classList.remove('active');
-                });
-                item.classList.add('active');
-                
-                // Load konten
-                if (kontenData[target]) {
-                    loadKonten(kontenData[target], target);
-                } else {
-                    loadKontenDefault(item.textContent.trim());
-                }
-            });
-        });
-        
-        function loadKonten(data, target) {
-            contentArea.innerHTML = `
-                <h2 style="color: var(--primary); margin-bottom: 1rem;">${data.judul}</h2>
-                <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem;">
-                    <p style="line-height: 1.7; color: var(--text-secondary);">${data.ringkasan}</p>
+            <!-- Navigation Chapters List -->
+            <nav class="flex-1 overflow-y-auto p-4 space-y-4" id="chaptersContainer">
+                <!-- Chapters will be rendered here via JS -->
+            </nav>
+
+            <!-- Sidebar Footer Info -->
+            <div class="p-4 border-t border-espresso-100 bg-beige/50 text-xs text-abukecoklatan">
+                <p class="font-medium text-espresso-950 mb-1">Mata Pelajaran SKI X</p>
+                <p>Kurikulum Merdeka Belajar</p>
+            </div>
+        </aside>
+
+        <!-- BACKDROP FOR MOBILE SIDEBAR -->
+        <div id="backdrop" class="fixed inset-0 bg-espresso-950/40 z-30 hidden lg:hidden transition-opacity duration-300"></div>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto lg:h-[calc(100vh-4rem)] bg-ivory">
+            <!-- Breadcrumbs -->
+            <nav class="flex text-xs text-abukecoklatan mb-4 items-center space-x-2" aria-label="Breadcrumb">
+                <span class="hover:text-espresso-800 cursor-pointer">LMS</span>
+                <i data-lucide="chevron-right" class="w-3 h-3 text-abukecoklatan"></i>
+                <span id="breadcrumbBab" class="hover:text-espresso-800 cursor-pointer">Bab 1</span>
+                <i data-lucide="chevron-right" class="w-3 h-3 text-abukecoklatan"></i>
+                <span id="breadcrumbSubbab" class="text-espresso-950 font-semibold truncate">Subbab 1.1</span>
+            </nav>
+
+            <!-- Bab Header Banner Card -->
+            <div class="bg-gradient-to-r from-espresso-950 to-espresso-900 border-l-4 border-emas rounded-2xl p-6 sm:p-8 text-krem shadow-md mb-6 relative overflow-hidden">
+                <div class="absolute right-0 bottom-0 opacity-10 translate-x-8 translate-y-8">
+                    <i data-lucide="scroll" class="w-48 h-48 text-emas"></i>
                 </div>
+                <div class="relative z-10 max-w-3xl">
+                    <span id="contentBabNumber" class="text-xs uppercase tracking-widest bg-emas/20 text-emas border border-emas/30 px-2.5 py-1 rounded-full font-bold">
+                        Bab 1
+                    </span>
+                    <h2 id="contentBabTitle" class="text-xl sm:text-2xl lg:text-3xl font-extrabold mt-3 leading-tight text-krem">
+                        Perkembangan Islam Masa Rasulullah SAW Periode Makkah
+                    </h2>
+                    <p id="contentBabDesc" class="text-krem/80 text-sm sm:text-base mt-3 leading-relaxed">
+                        ...
+                    </p>
+                </div>
+            </div>
+
+            <!-- SUBBAB DETAIL CONTENT -->
+            <section class="grid grid-cols-1 xl:grid-cols-3 gap-6">
                 
-                <div class="media-grid">
-                    ${data.gambar ? `
-                    <div class="media-card">
-                        <h4>📸 Gambar Materi</h4>
-                        <img src="${data.gambar}" alt="${data.judul}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem;">
-                    </div>` : ''}
+                <!-- Left/Middle Side: Main Material Texts & Media -->
+                <div class="xl:col-span-2 space-y-6">
                     
-                    ${data.video ? `
-                    <div class="media-card">
-                        <h4>▶️ Video Pembelajaran</h4>
-                        <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-                            <iframe src="${data.video.replace('watch?v=', 'embed/')}" 
-                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 10px;" 
-                                    frameborder="0" allowfullscreen>
+                    <!-- Text & Description Section -->
+                    <div class="bg-beige rounded-xl p-6 shadow-sm border border-espresso-100 transition-all duration-200">
+                        <div class="flex items-center space-x-3 border-b border-espresso-100 pb-4 mb-4">
+                            <span class="p-2 bg-krem-dark text-espresso-950 rounded-lg border border-emas/20">
+                                <i data-lucide="file-text" class="w-5 h-5 text-emas"></i>
+                            </span>
+                            <div>
+                                <span id="contentSubbabNumber" class="text-xs font-semibold text-emas">Subbab 1.1</span>
+                                <h3 id="contentSubbabTitle" class="text-lg sm:text-xl font-bold text-espresso-950">
+                                    Kebudayaan Masyarakat Makkah Sebelum Islam
+                                </h3>
+                            </div>
+                        </div>
+                        
+                        <!-- Rich Text Content Area -->
+                        <div id="contentRichText" class="prose max-w-none text-abukecoklatan text-sm sm:text-base leading-relaxed space-y-4">
+                            <p>
+                                Kondisi masyarakat Arab sebelum Islam (masa jahiliyah) ditandai dengan penyembahan berhala, kehidupan sosial yang bebas, serta budaya seperti berdagang, bersyair, dan menjunjung kehormatan suku.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Slide Presentation / Canva PPT Card -->
+                    <div id="presentationContainer" class="bg-beige rounded-xl p-6 shadow-sm border border-espresso-100 transition-all duration-200">
+                        <div class="flex items-center justify-between border-b border-espresso-100 pb-4 mb-4">
+                            <div class="flex items-center space-x-3">
+                                <span class="p-2 bg-krem-dark text-espresso-950 rounded-lg">
+                                    <i data-lucide="presentation" class="w-5 h-5 text-emas"></i>
+                                </span>
+                                <div>
+                                    <h4 class="font-bold text-espresso-950 text-sm sm:text-base">Materi Slide Presentasi (Canva)</h4>
+                                    <p class="text-xs text-abukecoklatan">Gunakan tombol ekspansi pada slide untuk layar penuh</p>
+                                </div>
+                            </div>
+                            <a id="btnPptExternal" href="#" target="_blank" class="text-espresso-800 hover:text-emas text-xs font-semibold flex items-center space-x-1" title="Buka di tab baru">
+                                <span>Buka</span>
+                                <i data-lucide="external-link" class="w-3 h-3 text-emas"></i>
+                            </a>
+                        </div>
+                        
+                        <!-- Presentation Iframe -->
+                        <div class="relative w-full overflow-hidden rounded-lg bg-krem border border-espresso-100" style="padding-top: 56.25%;">
+                            <iframe id="presentationIframe" class="absolute inset-0 w-full h-full border-0" 
+                                    src="" 
+                                    allowfullscreen="true" 
+                                    loading="lazy">
                             </iframe>
                         </div>
-                    </div>` : ''}
+                    </div>
+
+                    <!-- Image Material Section -->
+                    <div id="imageMaterialContainer" class="bg-beige rounded-xl p-6 shadow-sm border border-espresso-100 transition-all duration-200">
+                        <div class="flex items-center space-x-3 border-b border-espresso-100 pb-4 mb-4">
+                            <span class="p-2 bg-krem-dark text-espresso-950 rounded-lg">
+                                <i data-lucide="image" class="w-5 h-5 text-emas"></i>
+                            </span>
+                            <div>
+                                <h4 class="font-bold text-espresso-950 text-sm sm:text-base">Visualisasi Pendukung / Infografis</h4>
+                                <p class="text-xs text-abukecoklatan">Klik gambar untuk resolusi penuh</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Image Element -->
+                        <div class="rounded-lg overflow-hidden border border-espresso-100 bg-krem flex justify-center items-center p-2 min-h-[250px]">
+                            <a id="imageAnchor" href="#" target="_blank" class="w-full flex justify-center">
+                                <img id="materialImage" src="" alt="Materi Visual" class="max-h-96 w-auto object-contain rounded-lg hover:scale-[1.02] transition-transform duration-200" onerror="this.src='https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800&auto=format&fit=crop&q=60'">
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right Side: Interactive Activities & Video -->
+                <div class="space-y-6">
                     
-                    ${data.ppt ? `
-                    <div class="media-card">
-                        <h4>📽️ Presentasi PPT</h4>
-                        <a href="${data.ppt}" target="_blank" class="btn btn-primary" style="width: 100%;">Buka Presentasi</a>
-                    </div>` : ''}
+                    <!-- Video Pembelajaran Section -->
+                    <div id="videoContainer" class="bg-beige rounded-xl p-6 shadow-sm border border-espresso-100 transition-all duration-200">
+                        <div class="flex items-center justify-between border-b border-espresso-100 pb-4 mb-4">
+                            <div class="flex items-center space-x-3">
+                                <span class="p-2 bg-krem-dark text-espresso-950 rounded-lg">
+                                    <i data-lucide="youtube" class="w-5 h-5 text-emas"></i>
+                                </span>
+                                <div>
+                                    <h4 class="font-bold text-espresso-950 text-sm sm:text-base">Video Pembelajaran</h4>
+                                    <p class="text-xs text-abukecoklatan">Media audio visual</p>
+                                </div>
+                            </div>
+                            <a id="btnVideoExternal" href="#" target="_blank" class="text-espresso-800 hover:text-emas text-xs font-semibold flex items-center space-x-1" title="Tonton langsung di YouTube">
+                                <span>YouTube</span>
+                                <i data-lucide="external-link" class="w-3 h-3 text-emas"></i>
+                            </a>
+                        </div>
+                        
+                        <!-- YouTube Embed Frame -->
+                        <div class="relative w-full overflow-hidden rounded-lg bg-krem border border-espresso-100" style="padding-top: 56.25%;">
+                            <iframe id="videoIframe" class="absolute inset-0 w-full h-full border-0" 
+                                    src="" 
+                                    title="YouTube video player" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Evaluation Activity (Quiz & Game per Bab) -->
+                    <div class="bg-beige rounded-xl p-6 shadow-sm border border-espresso-100 transition-all duration-200">
+                        <div class="flex items-center space-x-3 border-b border-espresso-100 pb-4 mb-4">
+                            <span class="p-2 bg-krem-dark text-espresso-950 rounded-lg">
+                                <i data-lucide="award" class="w-5 h-5 text-emas"></i>
+                            </span>
+                            <div>
+                                <h4 class="font-bold text-espresso-950 text-sm sm:text-base font-semibold">Aktivitas Evaluasi Bab</h4>
+                                <p class="text-xs text-abukecoklatan">Kuis mandiri & permainan edukasi</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4 pt-2">
+                            <!-- Kuis Button Card -->
+                            <a id="btnQuiz" href="#" target="_blank" class="flex items-start p-3 bg-gradient-to-r from-krem to-beige border border-espresso-100 rounded-xl hover:shadow-sm hover:scale-[1.01] transition-all group">
+                                <div class="p-2.5 bg-espresso-950 text-krem rounded-lg shadow-sm group-hover:bg-espresso-900 border border-emas/20">
+                                    <i data-lucide="file-question" class="w-5 h-5 text-emas"></i>
+                                </div>
+                                <div class="ml-3 flex-1">
+                                    <div class="flex items-center justify-between">
+                                        <h5 class="font-bold text-espresso-950 text-sm">Uji Pemahaman (Google Forms)</h5>
+                                        <i data-lucide="arrow-up-right" class="w-4 h-4 text-abukecoklatan group-hover:text-emas transition-colors"></i>
+                                    </div>
+                                    <p class="text-xs text-abukecoklatan mt-1">Kerjakan evaluasi interaktif untuk menguji pemahaman bab ini.</p>
+                                </div>
+                            </a>
+
+                            <!-- Game Button Card -->
+                            <a id="btnGame" href="#" target="_blank" class="flex items-start p-3 bg-gradient-to-r from-krem to-beige border border-espresso-100 rounded-xl hover:shadow-sm hover:scale-[1.01] transition-all group">
+                                <div class="p-2.5 bg-espresso-950 text-krem rounded-lg shadow-sm group-hover:bg-espresso-900 border border-emas/20">
+                                    <i data-lucide="gamepad-2" class="w-5 h-5 text-emas"></i>
+                                </div>
+                                <div class="ml-3 flex-1">
+                                    <div class="flex items-center justify-between">
+                                        <h5 class="font-bold text-espresso-950 text-sm">Permainan Edukatif (Gemini)</h5>
+                                        <i data-lucide="arrow-up-right" class="w-4 h-4 text-abukecoklatan group-hover:text-emas transition-colors"></i>
+                                    </div>
+                                    <p class="text-xs text-abukecoklatan mt-1">Belajar asyik melalui game edukasi berbasis AI interaktif.</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Pembelajaran Deskripsi Bab Info -->
+                    <div class="bg-beige rounded-xl p-6 shadow-sm border border-espresso-100">
+                        <h4 class="font-bold text-espresso-950 text-sm sm:text-base mb-3 flex items-center gap-2">
+                            <i data-lucide="info" class="w-4 h-4 text-emas"></i>
+                            Mengenai Pembelajaran Ini
+                        </h4>
+                        <p class="text-xs text-abukecoklatan leading-relaxed">
+                            Pembelajaran ini membahas perkembangan Islam sejak masa Rasulullah SAW di Makkah dan Madinah, hingga masa Khulafaur Rasyidin dan Daulah Umayyah. Materi mencakup kondisi masyarakat sebelum Islam, strategi dakwah, serta perkembangan peradaban Islam.
+                        </p>
+                        <div class="mt-4 pt-3 border-t border-espresso-100 flex justify-between text-xs text-abukecoklatan">
+                            <span>SKS: 2 JP</span>
+                            <span>Target: Kelas X SMA/MA</span>
+                        </div>
+                    </div>
+
                 </div>
-                
-                <div style="text-align: center; margin-top: 2rem;">
-                    <a href="#" class="btn btn-primary" onclick="alert('Fitur kuis & game akan dikembangkan'); return false;">
-                        ❓ Kerjakan Kuis
-                    </a>
-                    <a href="#" class="btn btn-secondary" style="margin-left: 1rem;" onclick="alert('Fitur game akan dikembangkan'); return false;">
-                        🎮 Main Game
-                    </a>
-                </div>
-            `;
+
+            </section>
+        </main>
+
+    </div>
+
+    <!-- MAIN FOOTER -->
+    <footer class="bg-espresso-950 text-krem border-t border-emas/30 text-xs py-4 px-4 text-center">
+        <p>&copy; 2026 Sejarah Kebudayaan Islam Kelas X. Hak Cipta Dilindungi.</p>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPT (LMS Logic) -->
+    <script>
+        // DATA MODEL PEMBELAJARAN (LENGKAP DAN MODULAR)
+        const lmsData = {
+            chapters: [
+                {
+                    id: 1,
+                    title: "Perkembangan Islam Masa Rasulullah SAW Periode Makkah",
+                    summary: "Membahas kondisi masyarakat Arab sebelum Islam (masa jahiliyah) yang ditandai dengan penyembahan berhala, kehidupan sosial yang bebas, serta budaya seperti berdagang, bersyair, dan menjunjung kehormatan suku. Selain itu dijelaskan strategi dakwah Rasulullah SAW di Makkah yang dilakukan secara sembunyi-sembunyi dan terang-terangan, serta berbagai peristiwa penting seperti hijrah ke Habasyah dan penolakan kaum Quraisy terhadap dakwah Islam.",
+                    quizUrl: "https://forms.gle/oKsBVARUxe2HvimPA",
+                    gameUrl: "https://gemini.google.com/share/fee61ae382a7",
+                    subchapters: [
+                        {
+                            id: "1.1",
+                            title: "Kebudayaan Masyarakat Makkah Sebelum Islam",
+                            desc: "Menelaah adat istiadat, kepercayaan penyembahan berhala (Hubal, Latta, Uzza, Manat), sistem sosial-politik kesukuan, perniagaan, serta tradisi sastra syair bangsa Arab pra-Islam.",
+                            imageUrl: "https://i.ibb.co/fdtX5T0n/unnamed-1.png",
+                            imageOrigin: "https://ibb.co/0yZnSzJF",
+                            videoUrl: "https://www.youtube.com/embed/td2zOWv4G-8",
+                            videoOrigin: "https://youtu.be/td2zOWv4G-8",
+                            pptUrl: "https://www.canva.com/design/DAHJC4broKQ/AHDqhhDMCH-vSkQkn814YA/view?embed"
+                        },
+                        {
+                            id: "1.2",
+                            title: "Substansi dan Strategi Dakwah Rasulullah SAW Periode Makkah",
+                            desc: "Mempelajari awal mulanya wahyu turun di Gua Hira, penanaman tauhid murni, pembersihan akhlak, pembelaan HAM, taktik dakwah rahasia di rumah Arqam bin Abil Arqam, serta dakwah terang-terangan di Bukit Shafa.",
+                            imageUrl: "https://i.ibb.co/Hf4Qf0YQ/unnamed-3.png",
+                            imageOrigin: "https://ibb.co/Tx25xZR5",
+                            videoUrl: "https://www.youtube.com/embed/1foEBD2nPR4",
+                            videoOrigin: "https://youtu.be/1foEBD2nPR4",
+                            pptUrl: "https://www.canva.com/design/DAHJCxZ7IjM/3ni2ZSN5LabNAvFui-0Z1Q/view?embed"
+                        },
+                        {
+                            id: "1.3",
+                            title: "Peristiwa-peristiwa Penting dalam Dakwah Rasulullah SAW Periode Makkah",
+                            desc: "Mempelajari intimidasi kaum musyrik Quraisy, boikot ekonomi, peristiwa Amul Huzni (tahun duka), hijrah kaum muslimin ke Habasyah (Ethiopia), perjalanan mukjizat Isra' Mi'raj, hingga Ba'at Aqabah I dan II.",
+                            imageUrl: "https://i.ibb.co/xqLnjD4J/unnamed-2.png",
+                            imageOrigin: "https://ibb.co/nMmXcbWz",
+                            videoUrl: "https://www.youtube.com/embed/_UIzDbxM6Ko",
+                            videoOrigin: "https://youtu.be/_UIzDbxM6Ko",
+                            pptUrl: "https://www.canva.com/design/DAHJCwlknzU/LivMEk_Gc56E50I3xXY8RA/view?embed"
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    title: "Perkembangan Islam Masa Rasulullah SAW Periode Madinah",
+                    summary: "Menjelaskan kondisi masyarakat Madinah sebelum Islam yang terdiri dari berbagai suku dan agama. Rasulullah SAW membangun masyarakat Islam melalui strategi dakwah seperti mempersaudarakan kaum Muhajirin dan Anshar, membangun masjid, serta menyusun Piagam Madinah sebagai dasar kehidupan bernegara. Selain itu dibahas juga peristiwa penting dalam dakwah di Madinah.",
+                    quizUrl: "https://forms.gle/aXKZkWKhznP94i9XA",
+                    gameUrl: "https://gemini.google.com/share/a49c414b9d1e",
+                    subchapters: [
+                        {
+                            id: "2.1",
+                            title: "Kebudayaan dan Kondisi Masyarakat Madinah Sebelum Islam",
+                            desc: "Menganalisis kondisi demografi Yatsrib pra-hijrah yang dihuni suku Aus dan Khazraj (yang sering bertikai) serta kaum Yahudi (Bani Qainuqa, Nadhir, Quraizhah), serta keadaan agraris perkebunan kurma.",
+                            imageUrl: "https://i.ibb.co/TB5pCyw9/unnamed-1.png",
+                            imageOrigin: "https://ibb.co/7JF89hSs",
+                            videoUrl: "https://www.youtube.com/embed/D0OPcp4HzMw",
+                            videoOrigin: "https://youtu.be/D0OPcp4HzMw",
+                            pptUrl: "https://www.canva.com/design/DAHJCmP9rZA/E7LkAdKZ5FX-2ZQXGhEsaA/view?embed"
+                        },
+                        {
+                            id: "2.2",
+                            title: "Substansi dan Strategi Dakwah Rasulullah SAW Periode Madinah",
+                            desc: "Menguraikan pilar dakwah Rasulullah di Madinah: Membangun Masjid Nabawi sebagai pusat ibadah dan sosial, mempersaudarakan kaum Muhajirin dan Anshar, mendirikan pasar islami, serta membuat konstitusi negara tertulis pertama di dunia: Piagam Madinah.",
+                            imageUrl: "https://i.ibb.co/k2ScyTjh/unnamed-3.png",
+                            imageOrigin: "https://ibb.co/pjLXPTc3",
+                            videoUrl: "https://www.youtube.com/embed/wa4C75dRrfE",
+                            videoOrigin: "https://youtu.be/wa4C75dRrfE",
+                            pptUrl: "https://www.canva.com/design/DAHJC8cZKEk/__MWrgQwyFVYCbg6qDH5aA/view?embed"
+                        },
+                        {
+                            id: "2.3",
+                            title: "Peristiwa-peristiwa Penting dalam Dakwah Rasulullah SAW Periode Madinah",
+                            desc: "Menggali sejarah perang mempertahankan eksistensi (Perang Badar, Perang Uhud, Perang Khandaq/Ahzab), Perjanjian Hudaibiyah yang monumental, serta dakwah internasional melalui surat kepada kaisar dunia.",
+                            imageUrl: "https://i.ibb.co/5WrpLfsg/Whats-App-Image-2026-05-10-at-11-28-13.jpg",
+                            imageOrigin: "https://ibb.co/qMNqpPm3",
+                            videoUrl: "https://www.youtube.com/embed/f3Fq4XHj8Pw",
+                            videoOrigin: "https://youtu.be/f3Fq4XHj8Pw",
+                            pptUrl: "https://www.canva.com/design/DAHJC0ccaZQ/YpMJ7fdlLNp47sRnYIQ9-A/view?embed"
+                        }
+                    ]
+                },
+                {
+                    id: 3,
+                    title: "Penaklukan Kota Makkah (Fathu Makkah)",
+                    summary: "Menguraikan peristiwa Fathu Makkah yang terjadi karena pelanggaran perjanjian oleh kaum Quraisy. Keberhasilan penaklukan ini didukung oleh kekuatan umat Islam dan strategi yang matang. Peristiwa ini menunjukkan sikap pemaaf Rasulullah SAW serta nilai perdamaian. Selain itu dibahas juga peristiwa Haji Wada’ sebagai penyempurna dakwah beliau.",
+                    quizUrl: "https://forms.gle/yrQCSzpqF9R5ArrK6",
+                    gameUrl: "https://g.co/gemini/share/4e449421f571",
+                    subchapters: [
+                        {
+                            id: "3.1",
+                            title: "Sebab-sebab Terjadinya Fathu Makkah",
+                            desc: "Menelusuri kronologi pengkhianatan Bani Bakar (didukung Quraisy) atas aliansi perdamaian Hudaibiyah dengan menyerang Bani Khuza'ah, sehingga memaksa Rasulullah memimpin ekspedisi 10.000 pasukan perdamaian.",
+                            imageUrl: "https://i.ibb.co/ymwmSsx2/unnamed.png",
+                            imageOrigin: "https://ibb.co/p6t6yXkq",
+                            videoUrl: "https://www.youtube.com/embed/Xl_ROJYofT0",
+                            videoOrigin: "https://youtu.be/Xl_ROJYofT0",
+                            pptUrl: "https://www.canva.com/design/DAHJCS0ibXQ/QV2zTsKnczrmhuXFT2WUnA/view?embed"
+                        },
+                        {
+                            id: "3.2",
+                            title: "Faktor-faktor Keberhasilan Fathu Makkah",
+                            desc: "Menganalisis strategi pengapian unggun malam di Marr Azh-Zhahran, pembagian divisi pasukan pimpinan Khalid bin Walid dkk, diplomasi pembebasan Abu Sufyan, serta proklamasi pengampunan massal (amnesti umum) tanpa pertumpahan darah.",
+                            imageUrl: "https://i.ibb.co/ymFfb3jw/faktor-fathu.png",
+                            imageOrigin: "https://ibb.co/GfQxbhSK",
+                            videoUrl: "https://www.youtube.com/embed/KUnrY2SBN-0",
+                            videoOrigin: "https://youtu.be/KUnrY2SBN-0",
+                            pptUrl: "https://www.canva.com/design/DAHJCzXwn5E/GidRpvBldwW59bgF8T_NJQ/view?embed"
+                        },
+                        {
+                            id: "3.3",
+                            title: "Haji Wada’",
+                            desc: "Mempelajari esensi Khutbah Perpisahan Rasulullah SAW di Padang Arafah tentang kesetaraan umat manusia, perlindungan perempuan, larangan riba, persaudaraan mukmin, serta turunnya ayat terakhir QS. Al-Maidah ayat 3.",
+                            imageUrl: "https://i.ibb.co/xq6PctCM/haji-wada.png",
+                            imageOrigin: "https://ibb.co/yFqGMcf8",
+                            videoUrl: "https://www.youtube.com/embed/uTGNuW7-goY",
+                            videoOrigin: "https://youtu.be/uTGNuW7-goY",
+                            pptUrl: "https://www.canva.com/design/DAHJCr3gH_Y/CiSzrkU8b-9Ez9NRU24gaA/view?embed"
+                        }
+                    ]
+                },
+                {
+                    id: 4,
+                    title: "Perkembangan Islam Masa Khulafaur Rasyidin",
+                    summary: "Membahas masa Khulafaur Rasyidin yang terdiri dari Abu Bakar, Umar, Utsman, dan Ali. Pada masa ini terjadi penguatan pemerintahan Islam, perluasan wilayah, pengumpulan Al-Qur'an, serta berbagai kebijakan penting. Kepemimpinan mereka menjadi teladan dalam keadilan, musyawarah, dan tanggung jawab.",
+                    quizUrl: "https://forms.gle/zmtqH5Y3CEjTZGUT6",
+                    gameUrl: "https://gemini.google.com/share/aa0f82e7fa81",
+                    subchapters: [
+                        {
+                            id: "4.1",
+                            title: "Khalifah Abu Bakar As-Shiddiq",
+                            desc: "Mengkaji suksesi kepemimpinan di Tsaqifah Bani Sa'idah, kebijakan tegas memerangi nabi palsu dan kaum murtad (Perang Ridda), penugasan pengumpulan mushaf Al-Qur'an perdana oleh Zaid bin Tsabit, serta perluasan wilayah ke Syam dan Irak.",
+                            imageUrl: "https://i.ibb.co/7ts79d1r/unnamed-9.png",
+                            imageOrigin: "https://ibb.co/F4RGPLD8",
+                            videoUrl: "https://www.youtube.com/embed/TJyYcadHe2s",
+                            videoOrigin: "https://youtu.be/TJyYcadHe2s",
+                            pptUrl: "https://www.canva.com/design/DAHJCrl8h9k/LRZdqsFJqxDkFyZ5ZAKBvg/view?embed"
+                        },
+                        {
+                            id: "4.2",
+                            title: "Khalifah Umar bin Khattab",
+                            desc: "Mengupas penataan birokrasi pemerintahan: pembentukan Dewan Administrasi, kas negara Baitul Mal, pencetusan kalender Hijriah, ekspansi gemilang pembebasan Yerusalem dan Persia, serta gelar kehormatan 'Amirul Mukminin'.",
+                            imageUrl: "https://i.ibb.co/FktCGpkn/Infografis-Umar-Bin-Khattab-1.png",
+                            imageOrigin: "https://ibb.co/GfjNgmfF",
+                            videoUrl: "https://www.youtube.com/embed/3WNUMLwLZlc",
+                            videoOrigin: "https://youtu.be/3WNUMLwLZlc",
+                            pptUrl: "https://www.canva.com/design/DAHJChS53iA/AjUQyqQPkKP3DUId0t5iKA/view?embed"
+                        },
+                        {
+                            id: "4.3",
+                            title: "Khalifah Utsman bin Affan",
+                            desc: "Mempelajari penyeragaman penulisan Al-Qur'an (Mushaf Usmani), pembangunan armada angkatan laut pertama kaum muslimin, perluasan wilayah ke Afrika Utara, serta dinamika politik fitnah akhir kepemimpinan.",
+                            imageUrl: "https://i.ibb.co/NgwtkYK8/Infografis-Usman-Bin-Affan-1.png",
+                            imageOrigin: "https://ibb.co/p6CbsXdt",
+                            videoUrl: "https://www.youtube.com/embed/bPOAgez8yvA",
+                            videoOrigin: "https://youtu.be/bPOAgez8yvA",
+                            pptUrl: "https://www.canva.com/design/DAHJCoeGqBs/VhLIUbg3eZzsmiM3h8g3Ng/view?embed"
+                        },
+                        {
+                            id: "4.4",
+                            title: "Khalifah Ali bin Abi Thalib",
+                            desc: "Mengulas penataan ulang sistem administrasi pemerintahan, pembenahan kas negara, pengembangan bahasa Arab (Kufah sebagai pusat ilmu), penyelesaian konflik internal umat (Perang Jamal & Shiffin), serta keteladanan hidup sederhana.",
+                            imageUrl: "https://i.ibb.co/XGm8HrF/Infografis-Ali-Bin-Abi-Thalib.png",
+                            imageOrigin: "https://ibb.co/WRStC4B",
+                            videoUrl: "https://www.youtube.com/embed/5nIwVZe-6P8",
+                            videoOrigin: "https://youtu.be/5nIwVZe-6P8",
+                            pptUrl: "https://www.canva.com/design/DAHJCrB0nVM/oZJ-iQxsYjMjDcSMNyhiaQ/view?embed"
+                        }
+                    ]
+                },
+                {
+                    id: 5,
+                    title: "Peradaban Islam Daulah Umayyah di Damaskus",
+                    summary: "Menjelaskan berdirinya Daulah Umayyah di Damaskus yang dipimpin oleh Muawiyah bin Abi Sufyan. Pada masa ini terjadi perkembangan pesat dalam bidang pemerintahan, militer, dan ilmu pengetahuan. Selain itu dibahas juga tokoh-tokoh khalifah berprestasi serta faktor kemunduran Daulah Umayyah.",
+                    quizUrl: "https://forms.gle/asCZXcYeec7R2czr6",
+                    gameUrl: "https://gemini.google.com/share/d1a9756fdfb3",
+                    subchapters: [
+                        {
+                            id: "5.1",
+                            title: "Sejarah Lahirnya Daulah Umayyah di Damaskus",
+                            desc: "Mengkaji Amul Jama'ah (tahun persatuan) saat Hasan bin Ali menyerahkan kepemimpinan demi persatuan umat, pembentukan dinasti keturunan pertama dalam Islam, serta peralihan ibu kota dari Kufah ke Damaskus.",
+                            imageUrl: "https://i.ibb.co/V0TbRvw6/bab-5-1.jpg",
+                            imageOrigin: "https://ibb.co/mr4dkHNp",
+                            videoUrl: "https://www.youtube.com/embed/MRqPgGwp45Y",
+                            videoOrigin: "https://youtu.be/MRqPgGwp45Y",
+                            pptUrl: "https://www.canva.com/design/DAHJC4vP4X4/j-fofbS5Doe_NC0xKHbsZg/view?embed"
+                        },
+                        {
+                            id: "5.2",
+                            title: "Khalifah-khalifah Berprestasi Daulah Umayyah di Damaskus",
+                            desc: "Meneladani sosok kepemimpinan dan reformasi agung Muawiyah bin Abi Sufyan, Abd al-Malik bin Marwan (arabisasi mata uang & pos), Walid bin Abd al-Malik (puncak kejayaan infrastruktur), serta Umar bin Abdul Aziz yang adil laksana khulafaur rasyidin kelima.",
+                            imageUrl: "https://i.ibb.co/YFDHFjZW/ss-bab-2.png",
+                            imageOrigin: "https://ibb.co/HfN5fgd2",
+                            videoUrl: "https://www.youtube.com/embed/7-q2CsAEm90",
+                            videoOrigin: "https://youtu.be/7-q2CsAEm90",
+                            pptUrl: "https://www.canva.com/design/DAHJC66MUho/wx5T89ys-BbiFUNnwIN-3A/view?embed"
+                        },
+                        {
+                            id: "5.3",
+                            title: "Perkembangan Peradaban dan Ilmu Pengetahuan",
+                            desc: "Menjelaskan perkembangan arsitektur megah (Masjid Agung Damaskus, Kubah Batu Yerusalem), pembagian administrasi keuangan, dewan-dewan negara, serta tumbuh kembangnya kodifikasi hadis perdana dan ilmu sastra.",
+                            imageUrl: "https://i.ibb.co/LDTf7vGM/ss-bab3.png",
+                            imageOrigin: "https://ibb.co/XfnTRVw9",
+                            videoUrl: "https://www.youtube.com/embed/0yDeubdhbNA",
+                            videoOrigin: "https://youtu.be/0yDeubdhbNA",
+                            pptUrl: "https://www.canva.com/design/DAHJC5RuyWU/9Xw3uq1fg-H_NdplnMO0Lw/view?embed"
+                        },
+                        {
+                            id: "5.4",
+                            title: "Kemunduran Daulah Umayyah di Damaskus",
+                            desc: "Menganalisis sebab kejatuhan dinasti: sistem pengangkatan putra mahkota ganda, diskriminasi kelas sosial kaum Mawali (non-Arab), kemewahan keluarga istana, pertikaian suku Mudhar dan Yaman, hingga gerakan bawah tanah Daulah Abbasiyah.",
+                            imageUrl: "https://i.ibb.co/qYVg0LjX/bab-5-2.jpg",
+                            imageOrigin: "https://ibb.co/jkswV9fB",
+                            videoUrl: "https://www.youtube.com/embed/Wv-wkoqoa30",
+                            videoOrigin: "https://youtu.be/Wv-wkoqoa30",
+                            pptUrl: "https://www.canva.com/design/DAHJDKAbbGY/g57U98Swsn4V2_E-7_-92A/view?embed"
+                        }
+                    ]
+                },
+                {
+                    id: 6,
+                    title: "Peradaban Islam Daulah Umayyah di Andalusia",
+                    summary: "Membahas Daulah Umayyah di Andalusia yang membawa kemajuan besar dalam bidang ilmu pengetahuan, arsitektur, dan budaya di Eropa. Peradaban Islam berkembang pesat dan memberikan pengaruh besar bagi dunia Barat. Selain itu dijelaskan juga faktor kemunduran kekuasaan Islam di Andalusia.",
+                    quizUrl: "https://forms.gle/CnGC71M825cUuvTQ9",
+                    gameUrl: "https://gemini.google.com/share/b328e6868e14",
+                    subchapters: [
+                        {
+                            id: "6.1",
+                            title: "Sejarah Lahirnya Daulah Umayyah di Andalusia",
+                            desc: "Mempelajari penjelajahan heroik Tariq bin Ziyad menyeberangi selat Gibraltar, keruntuhan kerajaan Visigoth, serta perjuangan dramatis Abdurrahman ad-Dakhil ('Rajawali Quraisy') melarikan diri dari pembantaian Abbasiyah untuk mendirikan keamiran mandiri di Cordoba.",
+                            imageUrl: "https://i.ibb.co/nVNgJB0/unnamed.png",
+                            imageOrigin: "https://ibb.co/HMfF8C2",
+                            videoUrl: "https://www.youtube.com/embed/bd7OMHcLcuk",
+                            videoOrigin: "https://youtu.be/bd7OMHcLcuk",
+                            pptUrl: "https://www.canva.com/design/DAHJCwYFhsc/Iqv3fcb9WxkDoRNTNtjeHg/view?embed"
+                        },
+                        {
+                            id: "6.2",
+                            title: "Perkembangan Peradaban dan Ilmu Pengetahuan",
+                            desc: "Menelusuri kejayaan intelektual di Eropa Barat: berdirinya Universitas Cordoba, perpustakaan megah Al-Hakam II, kemajuan ilmu filsafat (Ibnu Rusyd), kedokteran (Al-Zahrawi/Abulcasis), sastra, serta kemegahan arsitektur Istana Alhambra di Granada.",
+                            imageUrl: "https://i.ibb.co/kswn6XY6/unnamed-1.png",
+                            imageOrigin: "https://ibb.co/21C2YdXY",
+                            videoUrl: "https://www.youtube.com/embed/zRJjy_Zi7_0",
+                            videoOrigin: "https://youtu.be/zRJjy_Zi7_0",
+                            pptUrl: "https://www.canva.com/design/DAHJC-1uHRc/F-huPAMrVQMesMzZo59a6A/view?embed"
+                        },
+                        {
+                            id: "6.3",
+                            title: "Kemunduran Daulah Umayyah di Andalusia",
+                            desc: "Mempelajari perpecahan kesatuan kekhalifahan menjadi negara-negara faksi kecil (Mulukut Thawaif), perang suksesi, bangkitnya Reconquista Kristen dari Utara, sampai jatuhnya wilayah Islam terakhir di Granada tahun 1492 M oleh pasukan gabungan Aragon & Kastila.",
+                            imageUrl: "https://i.ibb.co/mrrZw5Wm/unnamed-2.png",
+                            imageOrigin: "https://ibb.co/LDDjWd7M",
+                            videoUrl: "https://www.youtube.com/embed/Yu9KFRB2qsk",
+                            videoOrigin: "https://youtu.be/Yu9KFRB2qsk",
+                            pptUrl: "https://www.canva.com/design/DAHJCzcJ_gA/DiNWW2S6dk85In_496Z1WA/view?embed"
+                        }
+                    ]
+                }
+            ]
+        };
+
+        // DOM ELEMENTS
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebarClose = document.getElementById('sidebarClose');
+        const backdrop = document.getElementById('backdrop');
+        const chaptersContainer = document.getElementById('chaptersContainer');
+        const searchInput = document.getElementById('searchChapter');
+
+        // BREADCRUMB ELEMENTS
+        const breadcrumbBab = document.getElementById('breadcrumbBab');
+        const breadcrumbSubbab = document.getElementById('breadcrumbSubbab');
+
+        // CONTENT SECTION ELEMENTS
+        const contentBabNumber = document.getElementById('contentBabNumber');
+        const contentBabTitle = document.getElementById('contentBabTitle');
+        const contentBabDesc = document.getElementById('contentBabDesc');
+        const contentSubbabNumber = document.getElementById('contentSubbabNumber');
+        const contentSubbabTitle = document.getElementById('contentSubbabTitle');
+        const contentRichText = document.getElementById('contentRichText');
+        const presentationIframe = document.getElementById('presentationIframe');
+        const presentationContainer = document.getElementById('presentationContainer');
+        const btnPptExternal = document.getElementById('btnPptExternal');
+        const materialImage = document.getElementById('materialImage');
+        const imageAnchor = document.getElementById('imageAnchor');
+        const imageMaterialContainer = document.getElementById('imageMaterialContainer');
+        const videoIframe = document.getElementById('videoIframe');
+        const videoContainer = document.getElementById('videoContainer');
+        const btnVideoExternal = document.getElementById('btnVideoExternal');
+        const btnQuiz = document.getElementById('btnQuiz');
+        const btnGame = document.getElementById('btnGame');
+
+        // STATE MANAGEMENT
+        let currentChapterId = 1;
+        let currentSubchapterId = "1.1";
+
+        // SIDEBAR TOGGLE HANDLER (FOR MOBILE RESPONSIVENESS)
+        function toggleSidebar() {
+            sidebar.classList.toggle('-translate-x-full');
+            backdrop.classList.toggle('hidden');
         }
-        
-        function loadKontenDefault(judul) {
-            contentArea.innerHTML = `
-                <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
-                    <h2>${judul}</h2>
-                    <p>Isi materi untuk ${judul} akan ditambahkan oleh pengembang.</p>
-                    <p>Struktur sudah siap untuk menampilkan:</p>
-                    <ul style="text-align: left; display: inline-block;">
-                        <li>📖 Teks materi lengkap</li>
-                        <li>📸 Gambar pendukung</li>
-                        <li>▶️ Video animasi</li>
-                        <li>❓ Kuis interaktif</li>
-                        <li>🎮 Game pembelajaran</li>
-                        <li>📽️ Presentasi PPT</li>
-                    </ul>
-                </div>
+
+        sidebarToggle.addEventListener('click', toggleSidebar);
+        sidebarClose.addEventListener('click', toggleSidebar);
+        backdrop.addEventListener('click', toggleSidebar);
+
+        // INITIALIZE ALL MATERIAL CHAPTERS & SUBCHAPTERS TO SIDEBAR
+        function renderSidebar(filterText = '') {
+            chaptersContainer.innerHTML = '';
+            
+            lmsData.chapters.forEach(chap => {
+                // Filter logic
+                const searchLower = filterText.toLowerCase();
+                const matchedSubchapters = chap.subchapters.filter(sub => 
+                    sub.title.toLowerCase().includes(searchLower) || sub.id.includes(searchLower)
+                );
+                const chapTitleMatch = chap.title.toLowerCase().includes(searchLower);
+
+                // If chapter or any subchapters match search text, then render
+                if (chapTitleMatch || matchedSubchapters.length > 0) {
+                    const chapElement = document.createElement('div');
+                    chapElement.className = "border-b border-espresso-100 pb-3";
+                    
+                    // Collapse state indicator (Active Bab highlights)
+                    const isChapterActive = (chap.id === currentChapterId);
+                    
+                    chapElement.innerHTML = `
+                        <div class="flex items-start justify-between py-2 cursor-pointer group" onclick="selectChapter(${chap.id})">
+                            <div class="flex items-start space-x-2.5">
+                                <span class="mt-0.5 w-5 h-5 rounded flex items-center justify-center text-xs font-bold ${isChapterActive ? 'bg-espresso-950 text-krem border border-emas/30' : 'bg-krem-dark text-abukecoklatan group-hover:bg-espresso-900 group-hover:text-krem'}">
+                                    ${chap.id}
+                                </span>
+                                <span class="text-sm font-semibold tracking-tight transition-colors duration-200 ${isChapterActive ? 'text-espresso-950 font-bold' : 'text-hitampekat group-hover:text-espresso-800'}">
+                                    ${chap.title}
+                                </span>
+                            </div>
+                            <i data-lucide="chevron-down" class="w-4 h-4 text-abukecoklatan mt-1 flex-shrink-0 transition-transform ${isChapterActive ? 'rotate-180 text-emas' : ''}"></i>
+                        </div>
+                        <ul class="pl-7 mt-1.5 space-y-1 ${isChapterActive ? 'block' : 'hidden'}">
+                            ${chap.subchapters.map(sub => {
+                                const isSubActive = (sub.id === currentSubchapterId);
+                                return `
+                                    <li>
+                                        <button onclick="loadSubchapter('${chap.id}', '${sub.id}')" 
+                                                class="w-full text-left py-1.5 px-3 rounded-lg text-xs font-medium transition-all duration-150 flex items-center justify-between ${isSubActive ? 'bg-beige text-espresso-950 border-l-2 border-emas pl-2 font-bold' : 'text-abukecoklatan hover:bg-beige hover:text-espresso-950'}">
+                                            <span class="truncate pr-1">${sub.id} ${sub.title}</span>
+                                            ${isSubActive ? `<i data-lucide="play" class="w-3 h-3 text-emas fill-emas"></i>` : ''}
+                                        </button>
+                                    </li>
+                                `;
+                            }).join('')}
+                        </ul>
+                    `;
+                    chaptersContainer.appendChild(chapElement);
+                }
+            });
+            
+            // Re-render lucide icons inside generated html
+            lucide.createIcons();
+        }
+
+        // HANDLE SEARCH INPUT FILTER
+        searchInput.addEventListener('input', (e) => {
+            renderSidebar(e.target.value);
+        });
+
+        // ACTIONS TO SELECT & COLLAPSE / EXPAND CHAPTER
+        window.selectChapter = function(chapterId) {
+            currentChapterId = chapterId;
+            // Automatically set current subchapter to the first one in the chapter
+            const targetChap = lmsData.chapters.find(c => c.id === chapterId);
+            if (targetChap && targetChap.subchapters.length > 0) {
+                currentSubchapterId = targetChap.subchapters[0].id;
+            }
+            renderSidebar(searchInput.value);
+            updateContent();
+        }
+
+        // ACTION TO LOAD MAIN SPECIFIC SUBCHAPTER
+        window.loadSubchapter = function(chapterId, subchapterId) {
+            currentChapterId = parseInt(chapterId);
+            currentSubchapterId = subchapterId;
+            renderSidebar(searchInput.value);
+            updateContent();
+            
+            // Close sidebar on mobile once clicked
+            if (window.innerWidth < 1024) {
+                toggleSidebar();
+            }
+        }
+
+        // DYNAMICALLY RENDER WEB APP STATE/CONTENT ACCORDING TO SELECTED SUBCHAPTER
+        function updateContent() {
+            const chap = lmsData.chapters.find(c => c.id === currentChapterId);
+            if (!chap) return;
+
+            const sub = chap.subchapters.find(s => s.id === currentSubchapterId);
+            if (!sub) return;
+
+            // 1. Update Breadcrumbs & Banner Header Info
+            breadcrumbBab.innerText = `Bab ${chap.id}`;
+            breadcrumbSubbab.innerText = `Subbab ${sub.id}`;
+            breadcrumbBab.onclick = () => selectChapter(chap.id);
+
+            contentBabNumber.innerText = `Bab ${chap.id}`;
+            contentBabTitle.innerText = chap.title;
+            contentBabDesc.innerText = chap.summary;
+
+            // 2. Update Subchapter Title & Description Text
+            contentSubbabNumber.innerText = `Subbab ${sub.id}`;
+            contentSubbabTitle.innerText = sub.title;
+            
+            // Rich Text Paragraph
+            contentRichText.innerHTML = `
+                <p class="font-semibold text-espresso-950 italic border-l-4 border-emas pl-3 py-1 mb-3 bg-krem rounded-r-lg">
+                    ${sub.desc}
+                </p>
+                <p class="text-hitampekat">
+                    Sebagai bagian penting dari perkembangan sejarah Islam, subbab ini membahas secara komprehensif aspek historis, nilai sosiokultural, serta pelajaran kepemimpinan dakwah yang dapat dipetik hikmahnya oleh generasi masa kini.
+                </p>
             `;
+
+            // 3. Update Presentation Slide / Canva Embed
+            if (sub.pptUrl) {
+                presentationContainer.classList.remove('hidden');
+                presentationIframe.src = sub.pptUrl;
+                // clean url to canva presentation view
+                btnPptExternal.href = sub.pptUrl.replace('?embed', '');
+            } else {
+                presentationContainer.classList.add('hidden');
+            }
+
+            // 4. Update Image Material Placeholder
+            if (sub.imageUrl) {
+                imageMaterialContainer.classList.remove('hidden');
+                materialImage.src = sub.imageUrl;
+                materialImage.alt = sub.title;
+                imageAnchor.href = sub.imageOrigin || sub.imageUrl;
+            } else {
+                imageMaterialContainer.classList.add('hidden');
+            }
+
+            // 5. Update Video Embed
+            if (sub.videoUrl) {
+                videoContainer.classList.remove('hidden');
+                videoIframe.src = sub.videoUrl;
+                btnVideoExternal.href = sub.videoOrigin || sub.videoUrl;
+            } else {
+                videoContainer.classList.add('hidden');
+            }
+
+            // 6. Update Evaluation Links (Forms & Games) per Bab
+            btnQuiz.href = chap.quizUrl;
+            btnGame.href = chap.gameUrl;
+            
+            // Scroll view to top smoothly on load
+            document.querySelector('main').scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // STARTUP INIT RUN
+        window.onload = function() {
+            renderSidebar();
+            updateContent();
         }
     </script>
 </body>
